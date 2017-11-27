@@ -4,7 +4,7 @@ using System;
 
 public class PedometerPlugin : MonoBehaviour { 
 
-	public Initialise_button _Initialise_button; 
+	//public Initialise_button _Initialise_button; 
 
 
 	// events where you can listen
