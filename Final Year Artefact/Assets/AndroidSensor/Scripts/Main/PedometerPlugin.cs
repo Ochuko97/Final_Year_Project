@@ -2,7 +2,11 @@
 using System.Collections;
 using System;
 
-public class PedometerPlugin : MonoBehaviour {
+public class PedometerPlugin : MonoBehaviour { 
+
+	public Initialise_button _Initialise_button; 
+
+
 	// events where you can listen
 	private Action <int>LoadTotalStepCount;
 	public event Action <int>OnLoadTotalStepCount{
@@ -154,7 +158,8 @@ public class PedometerPlugin : MonoBehaviour {
 	/// <param name="sensorType">Sensor type.</param>
 	public void StartPedometerService(SensorDelay sensorType){
 		int selectedSensorType = (int)sensorType;
-		Message("check selected sensor type: " + selectedSensorType);
+		Message("check selected sensor type: " + selectedSensorType); 
+		//Startb = true;  
 		#if UNITY_ANDROID
 		if(Application.platform == RuntimePlatform.Android){
 			jo.CallStatic("startPedometerService",selectedSensorType);

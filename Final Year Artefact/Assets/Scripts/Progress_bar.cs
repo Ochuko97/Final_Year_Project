@@ -6,12 +6,16 @@ using UnityEngine.UI;
 public class Progress_bar : MonoBehaviour {
 	// setting the progress bar fill as a public variable that can be updated through the inspector 
 	public Image bar;  
-	
+	// utilising the pedometer connect script to transfer my stepcount varriable to this script. 
     public PedometerConnect PedometerConnection;
-    public int CurrentSteps;
-
+    // interger I will be using as the numeric value for the progeress bar scipt 
+	public int CurrentSteps;
+	// the target amout of steps it will take to complete the progress bar in the demo
     public int TargetSteps = 100;
-    public float Progress;
+    // the float that will be utilised to interact with the progress bar fill
+	public float Progress; 
+	//step text box
+	public Text Stepbox;
 
 	// Use this for initialization
 	void Start () { 
@@ -20,20 +24,18 @@ public class Progress_bar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () { 
-		// the x scale value of the progress bar will constantly checking for and updating the fill ratio of the progress bar.
-		// 
-		// this initilse a second routine that will begin when the IEnumerator Updatebar () is called.
-		//StartCoroutine(Updatebar());  
-		//if the x value of the bar is higher than 1, anchor the value to 1. This ensures the par does not over fill 
-
-        CurrentSteps = PedometerConnection.StepCount;
+		// settiong the value of the current steps as the value of the step count interger in the pedometer connection scrip 
+        CurrentSteps = PedometerConnection.StepCount;  
+		//CurrentSteps += 1; 
+		//Text box showcases the amount of steps taken
+		Stepbox.text = CurrentSteps.ToString (); 
+		//freezes current steps once targer as been reached
+		if (CurrentSteps >= TargetSteps) {
+			CurrentSteps = TargetSteps;
+		}
+		// setting the progree float as the minimal value from the current steps divided by the target steps ( x/100 = 0.progress) 
         Progress = Mathf.Min((float)CurrentSteps / (float)TargetSteps, 1f);
-        bar.rectTransform.localScale = new Vector3(Progress, 1f, 1f);
+		//transforming the x value of the progress bar based on the steps taking by the players. 
+		bar.rectTransform.localScale = new Vector3(Progress, 1f, 1f);
     } 
-	//IEnumerator Updatebar ()
-	//{
-		//Once the coroutine is called wait 2 seconds and increase the bar value.
-		//yield return new WaitForSeconds (2.0f); 
-		//fill_no += 0.050f; 
-	}
-//}
+}

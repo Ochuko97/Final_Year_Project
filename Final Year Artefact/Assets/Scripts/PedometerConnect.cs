@@ -35,6 +35,16 @@ public class PedometerConnect : MonoBehaviour {
             pedometerPlugin.Init();
         }
     }
+	public void StartPedometerService ()
+	{
+		// here you start and pass the sensor delay that you want to use
+		pedometerPlugin.StartPedometerService (SensorDelay.SENSOR_DELAY_FASTEST);
+		Debug.Log (demoName + "StartPedometerService has been called");
+	} 
+	public void StopPedometerService ()
+	{
+		pedometerPlugin.StopPedometerService ();
+	}
 
     private void OnStepCount(int totalStepCount) {
         stepCount++;
